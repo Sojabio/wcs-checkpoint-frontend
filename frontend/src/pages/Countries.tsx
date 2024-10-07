@@ -1,5 +1,6 @@
 import { useCountriesQuery } from '@/graphql/generated/schema';
 import React from 'react'
+import CountryCard from './CountryCard';
 
 export default function Countries() {
     const { data, loading, error } = useCountriesQuery();
@@ -7,9 +8,13 @@ export default function Countries() {
     if (loading) return <>loading</>
     if (error) return <>error</>
 
-    console.log("data", data)
-  return (
-    
-    <div className='bg-blue-500'>Countries</div>
-  )
+    if(data)
+    return (
+    <div className="flex flex-wrap justify-center">
+        {data?.countries.map(country => (
+          <CountryCard key={country.id} country={country} />
+        ))}
+    </div>
+    )
 }
+    
