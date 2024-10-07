@@ -5,11 +5,10 @@ const CountryDetails = () => {
     const router = useRouter();
     const { data, loading, error } = useCountryQuery({
         variables: { code: router.query.id as string },
-      });
+      })
  
       if (loading) return <>loading</>
       if (error) return <>error</>
-  
       if(data)
 
       return (
